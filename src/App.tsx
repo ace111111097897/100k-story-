@@ -104,17 +104,17 @@ const AuthContent: React.FC = () => {
       <Section>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
           <div className="mx-auto max-w-3xl text-center">
-            <h1 className="bg-gradient-to-br from-white via-white to-white/70 bg-clip-text text-4xl font-extrabold text-transparent sm:text-6xl">
-              Welcome, {loggedInUser?.email ?? "friend"}!
-            </h1>
-            <p className="mt-4 text-lg text-white/80">
-              A single, complete program combining stock investing fundamentals, real estate wholesaling playbooks, and a realistic roadmap to aggressive income goals. No fluff—just systems, templates, and execution.
-            </p>
+                         <h1 className="bg-gradient-to-br from-yellow-400 via-orange-500 to-yellow-600 bg-clip-text text-4xl font-extrabold text-transparent sm:text-6xl">
+               Welcome, Millionaire
+             </h1>
+             <p className="mt-4 text-lg text-white/80">
+               The exclusive academy for high-net-worth individuals and aspiring millionaires. Master advanced wealth-building strategies, elite investment frameworks, and the mindset of the ultra-successful.
+             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <a href="#pricing">
-                <Button size="lg" className="rounded-2xl px-6 py-6 text-base">
-                  Enroll Now <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
+                               <Button size="lg" className="rounded-2xl px-6 py-6 text-base bg-gradient-to-r from-yellow-500 via-orange-500 to-yellow-600 text-gray-900 font-bold">
+                 Join the Elite <ArrowRight className="ml-2 h-4 w-4" />
+               </Button>
               </a>
               <a href="#preview" className="text-white/80 hover:text-white">
                 <Button variant="secondary" className="rounded-2xl border-white/20 bg-white/10 px-6 py-6 text-base">
@@ -123,19 +123,19 @@ const AuthContent: React.FC = () => {
                 </Button>
               </a>
             </div>
-            <p className="mt-3 text-xs text-white/60">
-              Important: Investing &amp; real estate carry risk. No guaranteed results. Education only.
-            </p>
+                         <p className="mt-3 text-xs text-yellow-400/80">
+               ⚡ Elite members only. High-performance strategies for serious wealth builders.
+             </p>
           </div>
         </motion.div>
       </Section>
 
-      {/* FEATURES */}
-      <Section className="grid gap-8 md:grid-cols-3">
-        <Feature title="Stock Systems" desc="Entries, risk, journaling, and risk-reward modeling you can actually follow." />
-        <Feature title="Wholesaling Pipeline" desc="Deal sourcing, scripts, contracts, dispo, and cash buyer CRM templates." />
-        <Feature title="Execution Roadmaps" desc="90-day plans, KPIs, and accountability trackers to move fast—safely." />
-      </Section>
+             {/* FEATURES */}
+       <Section className="grid gap-8 md:grid-cols-3">
+         <Feature title="Elite Investment Strategies" desc="Advanced portfolio management, hedge fund techniques, and institutional-grade trading systems." />
+         <Feature title="Wealth Acceleration" desc="High-yield investment vehicles, tax optimization strategies, and passive income generation." />
+         <Feature title="Millionaire Mindset" desc="Psychology of wealth, networking with high-net-worth individuals, and scaling to 8+ figures." />
+       </Section>
 
       {/* CURRICULUM */}
       <Section id="curriculum">
@@ -176,29 +176,29 @@ const AuthContent: React.FC = () => {
 
       {/* PRICING */}
       <Section id="pricing">
-        <h2 className="text-2xl font-bold">Choose Your Access</h2>
-        <p className="mt-2 text-white/70">One-time payment. Instant access. 14-day refund policy.</p>
+        <h2 className="text-3xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">Elite Membership Tiers</h2>
+        <p className="mt-2 text-white/70">Exclusive access for high-net-worth individuals. Limited enrollment.</p>
         <div className="mt-6 grid gap-6 md:grid-cols-3">
           <PriceCard
-            title="Starter"
-            price="$197"
-            features={["Core modules (1–3)", "Downloadable templates", "Private student chat"]}
-            cta="Buy Starter"
+            title="Elite Access"
+            price="$1,997"
+            features={["Complete curriculum access", "Elite networking events", "Private wealth community"]}
+            cta="Join Elite"
             href="https://square.link/u/04ZtWm1z"
           />
           <PriceCard
-            title="Pro"
-            price="$497"
-            features={["Everything in Starter", "6 Live Q&A calls", "Deal analysis reviews", "Stock trade journal pack"]}
-            cta="Buy Pro"
+            title="Millionaire Circle"
+            price="$4,997"
+            features={["Everything in Elite", "1:1 wealth coaching", "Exclusive investment opportunities", "VIP networking"]}
+            cta="Join Circle"
             href="#"
             highlight
           />
           <PriceCard
-            title="Elite"
-            price="$1,497"
-            features={["Everything in Pro", "1:1 onboarding call", "Buyer list accelerator", "Advanced case studies"]}
-            cta="Buy Elite"
+            title="Billionaire Club"
+            price="$19,997"
+            features={["Everything in Circle", "Direct access to mentors", "Private deal flow", "Luxury retreat access"]}
+            cta="Join Club"
             href="#"
           />
         </div>
@@ -218,7 +218,7 @@ const AuthContent: React.FC = () => {
           </div>
         </div>
         <div>
-          <h3 className="text-xl font-semibold">Inside the Program</h3>
+          <h3 className="text-xl font-semibold text-yellow-400">Inside the Elite Academy</h3>
           <p className="mt-2 text-white/80">
             Get high-production video lessons, printable playbooks, and practical scripts. You’ll ship real outcomes: a tracked watchlist, a wholesaling pipeline, and a risk-first plan.
           </p>
@@ -254,24 +254,24 @@ const AuthContent: React.FC = () => {
         </div>
       </Section>
 
-      {/* CTA */}
-      <Section id="cta" className="text-center">
-        <h2 className="text-3xl font-extrabold">Ready to build your pipeline &amp; portfolio?</h2>
-        <p className="mt-2 text-white/80">Pick a plan and get instant access. Your future self will thank you.</p>
+             {/* CTA */}
+       <Section id="cta" className="text-center">
+         <h2 className="text-4xl font-extrabold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">Ready to Join the Elite?</h2>
+         <p className="mt-2 text-white/80">Choose your membership tier and unlock the path to millionaire status.</p>
         <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <a href="#pricing">
-            <Button size="lg" className="rounded-2xl px-6 py-6 text-base">
-              Choose a Plan <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
+                           <Button size="lg" className="rounded-2xl px-6 py-6 text-base bg-gradient-to-r from-yellow-500 via-orange-500 to-yellow-600 text-gray-900 font-bold">
+                 Join the Elite <ArrowRight className="ml-2 h-4 w-4" />
+               </Button>
           </a>
           <a href="mailto:support@yoursite.com" className="text-white/80 hover:text-white text-sm">Questions? Contact support</a>
         </div>
       </Section>
 
-      <footer className="border-t border-white/10 py-10 text-center text-xs text-white/60">
-        <p>© {new Date().getFullYear()} Quantum Course. All rights reserved.</p>
-        <p className="mt-2">Education only. No promises of income. Past performance is not indicative of future results.</p>
-      </footer>
+             <footer className="border-t border-white/10 py-10 text-center text-xs text-white/60">
+         <p>© {new Date().getFullYear()} ProfitU Academy. All rights reserved.</p>
+         <p className="mt-2">Elite education for high-net-worth individuals. Results may vary.</p>
+       </footer>
     </>
   );
 };
@@ -307,7 +307,7 @@ export default function FuturisticCourse() {
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
           <div className="flex items-center gap-2">
             <div className="h-8 w-8 rounded-xl bg-gradient-to-tr from-indigo-500 to-fuchsia-500" />
-            <span className="text-sm font-semibold tracking-wide text-white/90">Quantum Course</span>
+                         <span className="text-sm font-semibold tracking-wide text-white/90">ProfitU Academy</span>
           </div>
           <div className="flex items-center gap-4 text-sm text-white/70">
             <a href="#curriculum" className="hover:text-white">Curriculum</a>
