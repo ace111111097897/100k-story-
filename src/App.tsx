@@ -22,8 +22,59 @@ const SplineEmbed: React.FC = () => (
 
 const Glow: React.FC<{ className?: string }> = ({ className }) => (
   <div className={`pointer-events-none absolute inset-0 -z-10 ${className || ""}`}>
-    <div className="absolute -top-40 -left-40 h-80 w-80 rounded-full bg-indigo-500/20 blur-3xl" />
-    <div className="absolute -bottom-40 -right-40 h-80 w-80 rounded-full bg-fuchsia-500/20 blur-3xl" />
+    <motion.div 
+      animate={{
+        scale: [1, 1.2, 1],
+        opacity: [0.3, 0.6, 0.3],
+      }}
+      transition={{
+        duration: 8,
+        repeat: Infinity,
+        ease: "easeInOut"
+      }}
+      className="absolute -top-40 -left-40 h-80 w-80 rounded-full bg-yellow-500/20 blur-3xl" 
+    />
+    <motion.div 
+      animate={{
+        scale: [1.2, 1, 1.2],
+        opacity: [0.4, 0.7, 0.4],
+      }}
+      transition={{
+        duration: 10,
+        repeat: Infinity,
+        ease: "easeInOut",
+        delay: 2
+      }}
+      className="absolute -bottom-40 -right-40 h-80 w-80 rounded-full bg-orange-500/20 blur-3xl" 
+    />
+    <motion.div 
+      animate={{
+        y: [0, -30, 0],
+        x: [0, 20, 0],
+        rotate: [0, 180, 360],
+      }}
+      transition={{
+        duration: 15,
+        repeat: Infinity,
+        ease: "easeInOut",
+        delay: 1
+      }}
+      className="absolute top-1/4 right-1/4 h-40 w-40 rounded-full bg-yellow-400/10 blur-2xl" 
+    />
+    <motion.div 
+      animate={{
+        y: [0, 40, 0],
+        x: [0, -30, 0],
+        scale: [1, 1.3, 1],
+      }}
+      transition={{
+        duration: 12,
+        repeat: Infinity,
+        ease: "easeInOut",
+        delay: 3
+      }}
+      className="absolute bottom-1/4 left-1/4 h-60 w-60 rounded-full bg-orange-400/15 blur-2xl" 
+    />
   </div>
 );
 
@@ -32,15 +83,35 @@ const Section: React.FC<{ id?: string; className?: string; children: React.React
 );
 
 const Feature: React.FC<{ title: string; desc: string }> = ({ title, desc }) => (
-  <div className="flex items-start gap-3">
-    <div className="mt-1 rounded-full p-2 bg-white/10">
-      <Check className="h-4 w-4" />
-    </div>
+  <motion.div 
+    className="flex items-start gap-3"
+    initial={{ opacity: 0, y: 30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.6 }}
+    whileHover={{ 
+      y: -5,
+      transition: { duration: 0.3 }
+    }}
+  >
+    <motion.div 
+      className="mt-1 rounded-full p-2 bg-gradient-to-br from-yellow-500/20 to-orange-500/20 border border-yellow-500/30"
+      animate={{ 
+        rotate: [0, 360],
+        scale: [1, 1.1, 1]
+      }}
+      transition={{ 
+        rotate: { duration: 20, repeat: Infinity, ease: "linear" },
+        scale: { duration: 3, repeat: Infinity, ease: "easeInOut" }
+      }}
+    >
+      <Check className="h-4 w-4 text-yellow-400" />
+    </motion.div>
     <div>
       <h4 className="font-semibold text-white/90">{title}</h4>
       <p className="text-sm text-white/70">{desc}</p>
     </div>
-  </div>
+  </motion.div>
 );
 
 const PriceCard: React.FC<{
@@ -51,32 +122,108 @@ const PriceCard: React.FC<{
   href: string;
   highlight?: boolean;
 }> = ({ title, price, features, cta, href, highlight }) => (
-  <Card className={`relative overflow-hidden rounded-2xl border-white/10 bg-white/5 backdrop-blur-md ${highlight ? "ring-2 ring-indigo-400/70" : ""}`}>
-    <CardContent className="p-6">
-      <div className="mb-4 flex items-center justify-between">
-        <h3 className="text-xl font-semibold text-white">{title}</h3>
-        <div className="text-3xl font-bold text-white">
-          {price}
-          <span className="ml-1 text-sm font-normal text-white/60">/ one-time</span>
-        </div>
+  <motion.div
+    whileHover={{ 
+      y: -10,
+      scale: 1.02,
+      transition: { duration: 0.3 }
+    }}
+    initial={{ opacity: 0, y: 50 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.6 }}
+  >
+    <Card className={`relative overflow-hidden rounded-2xl border-yellow-500/30 bg-gradient-to-br from-gray-900/80 to-gray-800/60 backdrop-blur-xl ${highlight ? "ring-2 ring-yellow-400/70 shadow-2xl shadow-yellow-500/20" : "ring-1 ring-yellow-500/20"}`}>
+      {/* Floating particles */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-2xl">
+        <motion.div
+          animate={{
+            x: [0, 100, 0],
+            y: [0, -50, 0],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          className="absolute top-4 right-4 w-2 h-2 bg-yellow-400 rounded-full opacity-60"
+        />
+        <motion.div
+          animate={{
+            x: [0, -80, 0],
+            y: [0, 60, 0],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 2
+          }}
+          className="absolute bottom-4 left-4 w-1 h-1 bg-orange-400 rounded-full opacity-60"
+        />
+        <motion.div
+          animate={{
+            x: [0, 60, 0],
+            y: [0, -30, 0],
+          }}
+          transition={{
+            duration: 12,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 4
+          }}
+          className="absolute top-1/2 left-1/4 w-1.5 h-1.5 bg-yellow-500 rounded-full opacity-60"
+        />
       </div>
-      <ul className="mb-6 space-y-2">
-        {features.map((f, i) => (
-          <li key={i} className="flex items-start gap-2 text-white/80">
-            <Check className="mt-1 h-4 w-4 flex-none" />
-            <span>{f}</span>
-          </li>
-        ))}
-      </ul>
-      <a href={href} target="_blank" rel="noreferrer" className="block">
-        <Button className="w-full rounded-xl py-6 text-base">
-          <CreditCard className="mr-2 h-4 w-4" />
-          {cta}
-        </Button>
-      </a>
-      <p className="mt-3 text-center text-xs text-white/60">Secure checkout via Square</p>
-    </CardContent>
-  </Card>
+      
+      <CardContent className="p-6 relative z-10">
+        <div className="mb-4 flex items-center justify-between">
+          <h3 className="text-xl font-semibold text-white">{title}</h3>
+          <motion.div 
+            animate={{ scale: [1, 1.05, 1] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            className="text-3xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent"
+          >
+            {price}
+            <span className="ml-1 text-sm font-normal text-white/60">/ one-time</span>
+          </motion.div>
+        </div>
+        <ul className="mb-6 space-y-2">
+          {features.map((f, i) => (
+            <motion.li 
+              key={i} 
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ delay: i * 0.1 }}
+              className="flex items-start gap-2 text-white/80"
+            >
+              <motion.div
+                animate={{ rotate: [0, 360] }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              >
+                <Check className="mt-1 h-4 w-4 flex-none text-yellow-400" />
+              </motion.div>
+              <span>{f}</span>
+            </motion.li>
+          ))}
+        </ul>
+        <motion.a 
+          href={href} 
+          target="_blank" 
+          rel="noreferrer" 
+          className="block"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+        >
+          <Button className="w-full rounded-xl py-6 text-base bg-gradient-to-r from-yellow-500 via-orange-500 to-yellow-600 text-gray-900 font-bold hover:shadow-lg hover:shadow-yellow-500/25 transition-all duration-300">
+            <CreditCard className="mr-2 h-4 w-4" />
+            {cta}
+          </Button>
+        </motion.a>
+        <p className="mt-3 text-center text-xs text-yellow-400/80">Secure checkout via Square</p>
+      </CardContent>
+    </Card>
+  </motion.div>
 );
 
 const Testimonial: React.FC<{ quote: string; name: string; tag: string }> = ({ quote, name, tag }) => (
@@ -131,7 +278,33 @@ const AuthContent: React.FC = () => {
       </Section>
 
              {/* FEATURES */}
-       <Section className="grid gap-8 md:grid-cols-3">
+       <Section className="grid gap-8 md:grid-cols-3 relative">
+         {/* Floating background elements */}
+         <motion.div
+           animate={{
+             y: [0, -20, 0],
+             rotate: [0, 5, 0],
+           }}
+           transition={{
+             duration: 6,
+             repeat: Infinity,
+             ease: "easeInOut"
+           }}
+           className="absolute -top-10 -left-10 w-20 h-20 bg-gradient-to-br from-yellow-500/10 to-orange-500/10 rounded-full blur-xl"
+         />
+         <motion.div
+           animate={{
+             y: [0, 30, 0],
+             rotate: [0, -10, 0],
+           }}
+           transition={{
+             duration: 8,
+             repeat: Infinity,
+             ease: "easeInOut",
+             delay: 2
+           }}
+           className="absolute -bottom-10 -right-10 w-16 h-16 bg-gradient-to-br from-orange-500/15 to-yellow-500/15 rounded-full blur-xl"
+         />
          <Feature title="Elite Investment Strategies" desc="Advanced portfolio management, hedge fund techniques, and institutional-grade trading systems." />
          <Feature title="Wealth Acceleration" desc="High-yield investment vehicles, tax optimization strategies, and passive income generation." />
          <Feature title="Millionaire Mindset" desc="Psychology of wealth, networking with high-net-worth individuals, and scaling to 8+ figures." />
@@ -174,30 +347,70 @@ const AuthContent: React.FC = () => {
         </div>
       </Section>
 
-      {/* PRICING */}
-      <Section id="pricing">
-        <h2 className="text-3xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">Elite Membership Tiers</h2>
-        <p className="mt-2 text-white/70">Exclusive access for high-net-worth individuals. Limited enrollment.</p>
+             {/* PRICING */}
+       <Section id="pricing" className="relative">
+         {/* Floating elements around pricing */}
+         <motion.div
+           animate={{
+             y: [0, -40, 0],
+             x: [0, 20, 0],
+             rotate: [0, 180, 360],
+           }}
+           transition={{
+             duration: 12,
+             repeat: Infinity,
+             ease: "easeInOut"
+           }}
+           className="absolute -top-20 -left-20 w-12 h-12 bg-gradient-to-br from-yellow-400/20 to-orange-400/20 rounded-full blur-lg"
+         />
+         <motion.div
+           animate={{
+             y: [0, 50, 0],
+             x: [0, -30, 0],
+             scale: [1, 1.2, 1],
+           }}
+           transition={{
+             duration: 15,
+             repeat: Infinity,
+             ease: "easeInOut",
+             delay: 3
+           }}
+           className="absolute -bottom-20 -right-20 w-16 h-16 bg-gradient-to-br from-orange-500/25 to-yellow-500/25 rounded-full blur-lg"
+         />
+         <motion.h2 
+           className="text-3xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent"
+           animate={{ 
+             backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+           }}
+           transition={{
+             duration: 3,
+             repeat: Infinity,
+             ease: "easeInOut"
+           }}
+         >
+           Elite Membership Tiers
+         </motion.h2>
+         <p className="mt-2 text-white/70">Exclusive access for high-net-worth individuals. Limited enrollment.</p>
         <div className="mt-6 grid gap-6 md:grid-cols-3">
           <PriceCard
-            title="Elite Access"
-            price="$1,997"
+            title="Starter"
+            price="$197"
             features={["Complete curriculum access", "Elite networking events", "Private wealth community"]}
-            cta="Join Elite"
+            cta="Join Starter"
             href="https://square.link/u/04ZtWm1z"
           />
           <PriceCard
-            title="Millionaire Circle"
-            price="$4,997"
-            features={["Everything in Elite", "1:1 wealth coaching", "Exclusive investment opportunities", "VIP networking"]}
-            cta="Join Circle"
+            title="Pro"
+            price="$497"
+            features={["Everything in Starter", "1:1 wealth coaching", "Exclusive investment opportunities", "VIP networking"]}
+            cta="Join Pro"
             href="#"
             highlight
           />
           <PriceCard
-            title="Billionaire Club"
-            price="$19,997"
-            features={["Everything in Circle", "Direct access to mentors", "Private deal flow", "Luxury retreat access"]}
+            title="Millionaire Club"
+            price="$600"
+            features={["Everything in Pro", "Direct access to mentors", "Private deal flow", "Luxury retreat access"]}
             cta="Join Club"
             href="#"
           />
@@ -208,13 +421,13 @@ const AuthContent: React.FC = () => {
       <Section id="preview" className="grid items-center gap-6 md:grid-cols-2">
         <div>
           <div className="aspect-video overflow-hidden rounded-2xl border border-white/10 bg-white/5">
-            <iframe
-              className="h-full w-full"
-              src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0"
-              title="Course Preview"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-            />
+                         <iframe
+               className="h-full w-full"
+               src="https://www.youtube.com/embed/8bUQ0e6t5VY?rel=0"
+               title="Course Preview"
+               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+               allowFullScreen
+             />
           </div>
         </div>
         <div>
