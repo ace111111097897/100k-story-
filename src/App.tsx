@@ -3,10 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, Check, PlayCircle, CreditCard } from "lucide-react";
 import { Card, CardContent } from "./components/ui/card";
 import { Button } from "./components/ui/button";
-import { useConvexAuth, useQuery } from "convex/react";
-import { api } from "../convex/_generated/api";
 import { SignUpForm } from "./SignUpForm";
-import { SignOutButton } from "./SignOutButton";
 import { Toaster } from "sonner";
 
 // 3D background via Spline embed (simpler than hand-writing Three.js).
@@ -92,7 +89,15 @@ const Testimonial: React.FC<{ quote: string; name: string; tag: string }> = ({ q
 );
 
 const AuthContent: React.FC = () => {
-  const loggedInUser = useQuery(api.auth.loggedInUser);
+  const [loggedInUser, setLoggedInUser] = React.useState<any>(null);
+
+  React.useEffect(() => {
+    const userData = localStorage.getItem('userData');
+    if (userData) {
+      setLoggedInUser(JSON.parse(userData));
+    }
+  }, []);
+
   return (
     <>
       {/* HERO */}
@@ -272,7 +277,24 @@ const AuthContent: React.FC = () => {
 };
 
 export default function FuturisticCourse() {
-  const { isLoading, isAuthenticated } = useConvexAuth();
+  const [isAuthenticated, setIsAuthenticated] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    // Check if user is authenticated from localStorage
+    const userData = localStorage.getItem('userData');
+    if (userData) {
+      const user = JSON.parse(userData);
+      setIsAuthenticated(user.isAuthenticated);
+    }
+    setIsLoading(false);
+  }, []);
+
+  const handleSignOut = () => {
+    localStorage.removeItem('userData');
+    setIsAuthenticated(false);
+    window.location.reload();
+  };
 
   return (
     <main className="relative min-h-screen bg-black text-white">
@@ -291,7 +313,14 @@ export default function FuturisticCourse() {
             <a href="#curriculum" className="hover:text-white">Curriculum</a>
             <a href="#pricing" className="hover:text-white">Pricing</a>
             <a href="#faq" className="hover:text-white">FAQ</a>
-            {isAuthenticated && <SignOutButton />}
+            {isAuthenticated && (
+              <button
+                onClick={handleSignOut}
+                className="text-white/70 hover:text-white transition-colors"
+              >
+                Sign Out
+              </button>
+            )}
           </div>
         </div>
       </nav>

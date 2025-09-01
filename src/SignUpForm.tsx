@@ -1,12 +1,10 @@
 "use client";
-import { useAuthActions } from "@convex-dev/auth/react";
 import { useState } from "react";
 import { toast } from "sonner";
 import { motion, AnimatePresence } from "framer-motion";
 import { Eye, EyeOff, Sparkles, Zap, Shield, User, Mail, Lock } from "lucide-react";
 
 export function SignUpForm() {
-  const { signIn } = useAuthActions();
   const [submitting, setSubmitting] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -34,23 +32,24 @@ export function SignUpForm() {
     }
 
     setSubmitting(true);
-    const formDataObj = new FormData();
-    formDataObj.set("email", formData.email);
-    formDataObj.set("password", formData.password);
-    formDataObj.set("flow", "signUp");
     
-    try {
-      await signIn("password", formDataObj);
-    } catch (error: any) {
-      let toastTitle = "";
-      if (error.message.includes("Invalid password")) {
-        toastTitle = "Invalid password. Please try again.";
-      } else {
-        toastTitle = "Could not sign up. Please try again.";
-      }
-      toast.error(toastTitle);
+    // Simulate account creation process
+    setTimeout(() => {
+      // Store user data in localStorage for demo purposes
+      const userData = {
+        email: formData.email,
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        isAuthenticated: true
+      };
+      localStorage.setItem('userData', JSON.stringify(userData));
+      
+      toast.success("Account created successfully! Welcome to the Elite.");
       setSubmitting(false);
-    }
+      
+      // Trigger a page reload to show the authenticated content
+      window.location.reload();
+    }, 2000);
   };
 
   return (
