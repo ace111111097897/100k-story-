@@ -570,18 +570,34 @@ export default function FuturisticCourse() {
                  y: { duration: 3, repeat: Infinity, ease: "easeInOut" }
                }}
              >
-               {/* 3D Bat Logo */}
-               <div className="absolute inset-0 bg-gradient-to-br from-slate-300 via-slate-400 to-slate-500 rounded-xl shadow-2xl transform rotate-45">
-                 {/* Bat wings */}
-                 <div className="absolute top-1 left-1 w-2 h-3 bg-slate-600 rounded-full transform -rotate-45"></div>
-                 <div className="absolute top-1 right-1 w-2 h-3 bg-slate-600 rounded-full transform rotate-45"></div>
-                 {/* Bat body */}
-                 <div className="absolute top-2 left-2 right-2 bottom-1 bg-slate-700 rounded-full"></div>
-                 {/* Glossy overlay */}
-                 <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-black/20 rounded-xl"></div>
-                 {/* Shine effect */}
-                 <div className="absolute top-0 left-0 w-3 h-3 bg-white/40 rounded-full blur-sm"></div>
-               </div>
+                               {/* Glossy Black Batman Logo with Dripping Effect */}
+                <div className="absolute inset-0">
+                  {/* Main Batman symbol */}
+                  <div className="relative w-full h-full">
+                    {/* Batman ears */}
+                    <div className="absolute top-0 left-1/2 w-1.5 h-3 bg-gradient-to-b from-gray-400 to-gray-600 transform -translate-x-1/2 rounded-t-full"></div>
+                    <div className="absolute top-0 left-1/2 w-1.5 h-3 bg-gradient-to-b from-gray-400 to-gray-600 transform -translate-x-1/2 translate-x-0.5 rounded-t-full"></div>
+                    
+                    {/* Batman head */}
+                    <div className="absolute top-2 left-1/2 w-4 h-4 bg-gradient-to-br from-gray-300 via-gray-500 to-gray-700 rounded-full transform -translate-x-1/2"></div>
+                    
+                    {/* Batman wings */}
+                    <div className="absolute top-1.5 left-0 w-3 h-3 bg-gradient-to-br from-gray-400 to-gray-600 rounded-full transform -rotate-45"></div>
+                    <div className="absolute top-1.5 right-0 w-3 h-3 bg-gradient-to-br from-gray-400 to-gray-600 rounded-full transform rotate-45"></div>
+                    
+                    {/* Batman body */}
+                    <div className="absolute top-4 left-1/2 w-2 h-3 bg-gradient-to-b from-gray-400 to-gray-600 transform -translate-x-1/2 rounded-b-full"></div>
+                    
+                    {/* Dripping effect - multiple drops */}
+                    <div className="absolute bottom-0 left-1/2 w-1 h-2 bg-gradient-to-b from-gray-400 to-transparent transform -translate-x-1/2 rounded-b-full"></div>
+                    <div className="absolute bottom-0 left-1/2 w-0.5 h-1.5 bg-gradient-to-b from-gray-500 to-transparent transform -translate-x-1/2 translate-x-1 rounded-b-full"></div>
+                    <div className="absolute bottom-0 left-1/2 w-0.5 h-1 bg-gradient-to-b from-gray-500 to-transparent transform -translate-x-1/2 -translate-x-1 rounded-b-full"></div>
+                    
+                    {/* Glossy shine overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-black/30 rounded-full"></div>
+                    <div className="absolute top-1 left-1 w-1.5 h-1.5 bg-white/60 rounded-full blur-sm"></div>
+                  </div>
+                </div>
                {/* Floating glow */}
                <motion.div
                  className="absolute inset-0 bg-gradient-to-br from-yellow-400/20 to-orange-500/20 rounded-xl blur-lg"
