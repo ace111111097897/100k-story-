@@ -419,17 +419,55 @@ const AuthContent: React.FC = () => {
 
       {/* PREVIEW */}
       <Section id="preview" className="grid items-center gap-6 md:grid-cols-2">
-        <div>
-          <div className="aspect-video overflow-hidden rounded-2xl border border-white/10 bg-white/5">
-                         <iframe
-               className="h-full w-full"
-               src="https://www.youtube.com/embed/8bUQ0e6t5VY?rel=0"
-               title="Course Preview"
+                 <motion.div
+           initial={{ opacity: 0, scale: 0.9 }}
+           whileInView={{ opacity: 1, scale: 1 }}
+           viewport={{ once: true }}
+           transition={{ duration: 0.6 }}
+           whileHover={{ 
+             scale: 1.02,
+             transition: { duration: 0.3 }
+           }}
+         >
+           <div className="aspect-video overflow-hidden rounded-2xl border border-yellow-500/30 bg-gradient-to-br from-gray-900/60 to-gray-800/40 backdrop-blur-sm relative">
+             {/* Floating particles around video */}
+             <motion.div
+               animate={{
+                 x: [0, 20, 0],
+                 y: [0, -10, 0],
+               }}
+               transition={{
+                 duration: 6,
+                 repeat: Infinity,
+                 ease: "easeInOut"
+               }}
+               className="absolute top-4 right-4 w-2 h-2 bg-yellow-400 rounded-full opacity-60 z-10"
+             />
+             <motion.div
+               animate={{
+                 x: [0, -15, 0],
+                 y: [0, 15, 0],
+               }}
+               transition={{
+                 duration: 8,
+                 repeat: Infinity,
+                 ease: "easeInOut",
+                 delay: 2
+               }}
+               className="absolute bottom-4 left-4 w-1 h-1 bg-orange-400 rounded-full opacity-60 z-10"
+             />
+             <iframe
+               className="h-full w-full relative z-0"
+               src="https://www.youtube.com/embed/8bUQ0e6t5VY?rel=0&modestbranding=1&showinfo=0"
+               title="How to Become a Millionaire - Grant Cardone"
                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                allowFullScreen
+               style={{ border: 'none' }}
              />
-          </div>
-        </div>
+             {/* Glossy overlay */}
+             <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-black/10 pointer-events-none rounded-2xl"></div>
+           </div>
+         </motion.div>
         <div>
           <h3 className="text-xl font-semibold text-yellow-400">Inside the Elite Academy</h3>
           <p className="mt-2 text-white/80">
@@ -518,10 +556,48 @@ export default function FuturisticCourse() {
       {/* NAV */}
       <nav className="sticky top-0 z-40 border-b border-white/10 bg-black/40 backdrop-blur-xl">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
-          <div className="flex items-center gap-2">
-            <div className="h-8 w-8 rounded-xl bg-gradient-to-tr from-indigo-500 to-fuchsia-500" />
-                         <span className="text-sm font-semibold tracking-wide text-white/90">ProfitU Academy</span>
-          </div>
+                     <div className="flex items-center gap-3">
+             <motion.div 
+               className="relative h-10 w-10"
+               animate={{ 
+                 rotateY: [0, 360],
+                 rotateX: [0, 15, 0],
+                 y: [0, -5, 0]
+               }}
+               transition={{ 
+                 rotateY: { duration: 8, repeat: Infinity, ease: "linear" },
+                 rotateX: { duration: 4, repeat: Infinity, ease: "easeInOut" },
+                 y: { duration: 3, repeat: Infinity, ease: "easeInOut" }
+               }}
+             >
+               {/* 3D Bat Logo */}
+               <div className="absolute inset-0 bg-gradient-to-br from-slate-300 via-slate-400 to-slate-500 rounded-xl shadow-2xl transform rotate-45">
+                 {/* Bat wings */}
+                 <div className="absolute top-1 left-1 w-2 h-3 bg-slate-600 rounded-full transform -rotate-45"></div>
+                 <div className="absolute top-1 right-1 w-2 h-3 bg-slate-600 rounded-full transform rotate-45"></div>
+                 {/* Bat body */}
+                 <div className="absolute top-2 left-2 right-2 bottom-1 bg-slate-700 rounded-full"></div>
+                 {/* Glossy overlay */}
+                 <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-black/20 rounded-xl"></div>
+                 {/* Shine effect */}
+                 <div className="absolute top-0 left-0 w-3 h-3 bg-white/40 rounded-full blur-sm"></div>
+               </div>
+               {/* Floating glow */}
+               <motion.div
+                 className="absolute inset-0 bg-gradient-to-br from-yellow-400/20 to-orange-500/20 rounded-xl blur-lg"
+                 animate={{ 
+                   scale: [1, 1.2, 1],
+                   opacity: [0.3, 0.6, 0.3]
+                 }}
+                 transition={{ 
+                   duration: 3, 
+                   repeat: Infinity, 
+                   ease: "easeInOut" 
+                 }}
+               />
+             </motion.div>
+             <span className="text-sm font-semibold tracking-wide text-white/90">ProfitU Academy</span>
+           </div>
           <div className="flex items-center gap-4 text-sm text-white/70">
             <a href="#curriculum" className="hover:text-white">Curriculum</a>
             <a href="#pricing" className="hover:text-white">Pricing</a>
